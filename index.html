@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web bán game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body onload="showList();isLogin();">
+<ul>
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="#news">Tin tức</a></li>
+    <li><a href="#contact">Liên hệ</a></li>
+    <li><a href="#about">Thông tin thêm</a></li>
+    <li><a href="#Hotline">Hotline</a></li>
+
+    <li id="search">
+        <div class="container-input">
+            <input type="text" placeholder="Search" name="text" class="input" id="searchInput" oninput="search()">
+
+        </div>
+    </li>
+        <button style="margin-left: 700px" id="cartBtn" onclick="showCart()">Giỏ hàng</button>
+    <li style="float: right"><a href="register.html">Đăng nhập</a></li>
+</ul>
+<div id="cart" style="float: right"></div>
+<button class="cssbuttons-io-button" style="float: right" onclick="showAddGame()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+    <span>Thêm sản phẩm game mới</span>
+</button>
+<table id="infoTable" style="display: none;width: 300px;float: right">
+    <tr>
+        <th colSpan="2">Thông tin game<button style="float: right;width: 50px" onclick="hideAddGame()">-</button></th>
+    </tr>
+    <tr>
+        <td>Ảnh</td>
+        <td><input id="inputImg"></td>
+    </tr>
+    <tr>
+        <td>Tên</td>
+        <td><input id="inputName"></td>
+    </tr>
+    <tr>
+        <td>Giá</td>
+        <td><input id="inputPrice"></td>
+    </tr>
+    <tr>
+        <td>Thể loại</td>
+        <td><input id="inputCategory"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button onClick="addGame()">ADD</button>
+            <button onClick="editGame()">Save</button>
+        </td>
+    </tr>
+</table>
+<div id="list-game"></div>
+
+<footer class>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Thông tin liên hệ</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Quận XYZ, HN</p>
+                <p><i class="fas fa-phone"></i> Điện thoại: 0123456789</p>
+                <p><i class="fas fa-envelope"></i> Email: info@webbangame.com</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Đường dẫn nhanh</h3>
+                <ul>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Thông tin thêm</a></li>
+                    <li><a href="#">Hotline</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3 onclick="show()">Theo dõi chúng tôi</h3>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">© 2023 Web bán game. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+<script src="register.js"></script>
+<script src="cart.js"></script>
+<script src="index.js"></script>
+</html>
