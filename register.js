@@ -35,7 +35,7 @@ function regNewAcc() {
         alert("Đăng ký thành công");
         accountArr.push(account);
         showLoginForm();
-        localStorage.setItem("Account",JSON.stringify(accountArr));
+        localStorage.setItem("Account", JSON.stringify(accountArr));
         let data = JSON.parse(localStorage.getItem('Account'));
         console.log(data)
 
@@ -62,13 +62,29 @@ function login() {
 
     if (check) {
         alert("đăng nhập thành công");
-        localStorage.setItem("loginSuccess",JSON.stringify(true));
+        localStorage.setItem("loginSuccess", JSON.stringify(true));
+        localStorage.setItem("usernameLogedin", JSON.stringify(username));
         window.location.href = "index.html";
     } else {
         alert("đăng nhập thất bại");
-        localStorage.setItem("loginSuccess",JSON.stringify(false));
-        window.location.href = "index.html";
+        localStorage.setItem("loginSuccess", JSON.stringify(false));
     }
+}
+
+function logedinHello() {
+    let username = localStorage.getItem('usernameLogedin');
+    let check = localStorage.getItem('loginSuccess') === 'true';
+    if (check) {
+        document.getElementById('usernameHello').innerHTML = username;
+        document.getElementById('addGameBtn').style.display = "block";
+        document.getElementById('loginBtn').style.display = "none"
+        document.getElementById('logoutBtn').style.display = "block"
+    }else{
+        document.getElementById('usernameHello').innerHTML = "Khách";
+    }
+}
+function logOut() {
+     localStorage.setItem('loginSuccess',false);
 }
 
 function showRegForm() {
@@ -80,13 +96,8 @@ function showLoginForm() {
     document.getElementById('formLogin').style.display = "block";
     document.getElementById('formRegister').style.display = "none";
 }
-function isLogin() {
-    let data = JSON.parse(localStorage.getItem('loginSuccess'));
-    console.log(data)
-    if (data){
-        document.getElementById('updateBtns').style.display = "block";
-    }else {
-        document.getElementById('updateBtns').style.display = "none";
-    }
-}
+
+
+
+
 

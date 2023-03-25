@@ -1,14 +1,17 @@
 td {
     padding: 10px;
 }
+#navbar {
+    background-color: #5eda9d;
+}
 
 /* css nav bar */
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     overflow: hidden;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 li {
@@ -17,24 +20,20 @@ li {
 
 li a {
     display: block;
-    color: white;
+    /*color: white;*/
     text-align: center;
     padding: 16px;
     text-decoration: none;
 }
 
 #search {
-    margin-top: 5px;
+    margin-top: 20px;
 }
 * {
     margin: 0;
     padding: 0;
 }
-#infoTable{
-    border: 2px solid black;
-    text-align: center;
 
-}
 /*Add button css*/
 .cssbuttons-io-button {
     display: flex;
@@ -64,4 +63,34 @@ li a {
     box-shadow: 0 0.3em 1em -0.5em #14a73e98;
 }
 
-/* css footer */
+
+
+/* css list game */
+#list-game {
+    padding: 0 150px;
+}
+/* css info table to add game */
+#infoTable {
+    top: 30%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: red;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#cart-frame {
+    position: fixed;
+    top: 37%;
+    left: 94%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    overflow: auto;
+}
