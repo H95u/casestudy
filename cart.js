@@ -13,7 +13,7 @@ function addToCart(index) {
 }
 
 function showCart() {
-    let table = "<table id='cartTable'>";
+    let table = "<table id='cartTable' class='table'>";
     for (let i = 0; i < cart.length; i++) {
         table += `<tr> <td><img width="100" height="100" src="${cart[i].img}" alt="a">
 <p>${cart[i].name}<p><p style="color: red">Giá : ${cart[i].price}</p>
@@ -21,10 +21,14 @@ function showCart() {
     }
     table += "</table>"
     document.getElementById('cart').innerHTML = table;
-    document.getElementById('cart-frame').style.display= "block"
+    document.getElementById('cart-frame').style.display= "block";
 }
 
 function hideCart() {
     document.getElementById('cart-frame').style.display = "none";
+}
+function deleteCart() {
+    cart.length = 0;
+    showCart();
 }
 

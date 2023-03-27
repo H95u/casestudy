@@ -14,7 +14,8 @@
 <body onload="showList();logedinHello()">
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)"><img width="50" height="50" src="2250026_game_gameboy_handheld_nintendo_portable_icon.png"></a>
+        <a class="navbar-brand" href="index.html"><img width="50" height="50" src="logo.png"></a><span
+            style="color: white">H95u <br> Shop</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,16 +26,17 @@
                     <a class="nav-link" href="index.html">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Link</a>
+                    <a class="nav-link" href="#">Hướng dẫn mua hàng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Link</a>
+                    <a class="nav-link" href="#">Thông tin liên hệ</a>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item">
                     <a class="nav-link" href="register.html" id="loginBtn">Đăng nhập</a>
                 </li>
-                <li class="nav-item" >
-                    <a class="nav-link" href="index.html" style="display: none" id="logoutBtn" onclick="logOut()">Đăng xuất</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" style="display: none" id="logoutBtn" onclick="logOut()">Đăng
+                        xuất</a>
                 </li>
                 <li class="nav-item" value="Tên đăng nhập">
                     <a class="nav-link" href="#">Xin chào, <span style="color: red" id="usernameHello"></span></a>
@@ -42,24 +44,27 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="text" placeholder="Search" id="searchInput" oninput="search()">
-                <button class="btn btn-primary" type="button">Search</button>
             </form>
-            <button class="cssbuttons-io-button" id="addGameBtn" style="float: right;display: none" onclick="showAddGame()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
-                <span>Thêm sản phẩm game mới</span>
+            <button class="btn btn-primary" id="addGameBtn" style="float: right;display: none" onclick="showAddGame()">
+                Thêm sản phẩm game mới
             </button>
-            <button onclick="showCart()">Giỏ hàng</button>
+            <button class="btn btn-secondary" type="button" onclick="showCart()"><img width="30" height="30"
+                                                                                      src="cart.png">Giỏ hàng
+            </button>
         </div>
     </div>
 </nav>
-<div id="cart-frame" style="display: none">
-    <img width="50" height="50" src="cart.png"><img style="margin-left: 100px" width="30" height="30" src="minimize.png" onclick="hideCart()">
+<div id="cart-frame" style="display: none;position: absolute">
+    <button class="btn btn-danger" onclick="deleteCart()">Clear</button>
+    <img width="30" height="30" src="minimize.png" style="margin-left: 90px;position: absolute" onclick="hideCart()">
     <p id="cart" style="float: right "></p>
 </div>
 
-<table id="infoTable" style="display: none;width: 300px;float: right">
+<table id="infoTable" style="display: none;width: 300px;float: right;position: absolute">
     <tr>
-        <th colSpan="2">Thông tin game<button style="float: right;width: 50px" onclick="hideAddGame()">-</button></th>
+        <th colSpan="2">Thông tin game
+            <button style="float: right;width: 50px" onclick="hideAddGame()">-</button>
+        </th>
     </tr>
     <tr>
         <td>Ảnh</td>
@@ -80,11 +85,24 @@
     <tr>
         <td></td>
         <td>
-            <button onclick="addGame()" >ADD</button>
+            <button onclick="addGame()">ADD</button>
             <button onclick="editGame()">Save</button>
         </td>
     </tr>
 </table>
+<h3 style="text-align: center;color: #0059ff;font-style: italic">Danh sách sản phẩm</h3>
+<div id="filterArea">
+    <select id="filterCategory">
+        <option value="Sport" selected>Sport</option>
+        <option value="Action">Action</option>
+        <option value="RPG">RPG</option>
+    </select>
+    <span>Mức giá</span>
+    <input type="number" id="lowestPrice" placeholder="Mức giá thấp nhất">
+    <span>-</span>
+    <input placeholder="Mức giá cao nhất" id="highestPrice" type="number">
+    <button class="btn btn-primary" onclick="filter()">Lọc</button>
+</div>
 <div id="list-game"></div>
 
 <footer class="footer">
@@ -97,7 +115,7 @@
                 <p><i class="fas fa-envelope"></i> Email: info@webbangame.com</p>
             </div>
             <div class="col-md-4">
-                <h3>Đường dẫn nhanh</h3>
+                <h3 style="margin-left: 50px">Đường dẫn nhanh</h3>
                 <ul>
                     <li><a href="#">Trang chủ</a></li>
                     <li><a href="#">Tin tức</a></li>

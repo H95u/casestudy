@@ -53,14 +53,14 @@ function showList() {
             row = "";
         }
         row += `<td>
-        <img width="250" height="200" src="${gameArr[i].img}" alt="a">
+        <img width="300" height="200" src="${gameArr[i].img}" alt="a">
         <p>${gameArr[i].name}</p>
         <p style="color: #bd2828">Giá : ${gameArr[i].price}</p>
         <p style="color: #4ba74b"> Thể loại : ${gameArr[i].category} </p>
         <div style="display: ${showButtons ? 'block' : 'none'}"> 
-        <button onclick="updateGame(${i}); showAddGame()">Edit</button>
-        <button onclick="deleteGame(${i})">Delete</button>
-        <button onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
+        <button class="btn btn-outline-primary" onclick="updateGame(${i}); showAddGame()">Edit</button>
+        <button class="btn btn-outline-primary" onclick="deleteGame(${i})">Delete</button>
+        <button class="btn btn-outline-primary" onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
         </div>
         </td>`;
     }
@@ -88,14 +88,14 @@ function search() {
             row = "";
         }
         row += "<td>";
-        row += `<img width="250" height="200" src="${gameArr1[i].img}" alt="a">`;
+        row += `<img width="300" height="200" src="${gameArr1[i].img}" alt="a">`;
         row += `<p>${gameArr1[i].name}</p>`;
         row += `<p style="color: #bd2828">Giá : ${gameArr1[i].price}</p>`;
         row += `<p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>`;
         row += `<div style="display: ${showButtons ? 'block' : 'none'}">
-            <button onClick="updateGame(${i}); showAddGame()">Edit</button>
-            <button onClick="deleteGame(${i})">Delete</button>
-            <button onClick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
+            <button class="btn btn-outline-primary" onclick="updateGame(${i}); showAddGame()">Edit</button>
+            <button class="btn btn-outline-primary" onclick="deleteGame(${i})">Delete</button>
+            <button class="btn btn-outline-primary" onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
                </div>`
         row += "</td>";
     }
@@ -153,7 +153,42 @@ function showAddGame() {
 function hideAddGame() {
     document.getElementById('infoTable').style.display = "none";
 }
+function filter() {
+    let searchInput = document.getElementById('filterCategory');
+    let filterValue = searchInput.value.toUpperCase();
+    let inputLowestPrice = document.getElementById('lowestPrice').value;
+    let inputHighestPrice = document.getElementById('highestPrice').value;
+    let showButtons = localStorage.getItem('loginSuccess') === 'true';
+    gameArr1 = gameArr.filter(game => {
+        return game.category.toUpperCase().includes(filterValue) && game.price >=inputLowestPrice && game.price <= inputHighestPrice;
+    });
 
+        let table = "<table>";
+        let row = "";
+
+        for (let i = 0; i < gameArr1.length; i++) {
+            if (i % 4 === 0) {
+
+                table += "<tr>" + row + "</tr>";
+
+                row = "";
+            }
+            row += "<td>";
+            row += `<img width="300" height="200" src="${gameArr1[i].img}" alt="a">`;
+            row += `<p>${gameArr1[i].name}</p>`;
+            row += `<p style="color: #bd2828">Giá : ${gameArr1[i].price}</p>`;
+            row += `<p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>`;
+            row += `<div style="display: ${showButtons ? 'block' : 'none'}">
+            <button onclick="updateGame(${i}); showAddGame()">Edit</button>
+            <button onclick="deleteGame(${i})">Delete</button>
+            <button onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
+               </div>`
+            row += "</td>";
+        }
+        table += "<tr>" + row + "</tr>";
+        table += "</table>";
+        document.getElementById('list-game').innerHTML = table;
+}
 
 
 

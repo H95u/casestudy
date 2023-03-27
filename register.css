@@ -1,3 +1,38 @@
+#formLogin {
+    position: absolute;
+    padding: 200px 600px;
+    color: white;
+}
+
+#formRegister {
+    position: absolute;
+    padding: 150px 600px;
+    color: yellow;
+}
+#formRegister input {
+    margin-bottom: 20px;
+    width: 260px;
+}
 fieldset {
-    margin-left: 55  0px;
+    border: 2px solid #ccc !important;
+    border-radius: 10px;
+    padding: 10px !important;
+    margin: 10px !important;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+body {
+    background-image: url("register1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background {
+   background-image: url("login1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+caption {
+    caption-side: top;
+}
+input {
+    border-radius: 5px;
 }
