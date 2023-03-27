@@ -48,22 +48,22 @@
             <button class="btn btn-primary" id="addGameBtn" style="float: right;display: none" onclick="showAddGame()">
                 Thêm sản phẩm game mới
             </button>
-            <button class="btn btn-secondary" type="button" onclick="showCart()"><img width="30" height="30"
-                                                                                      src="cart.png">Giỏ hàng
+            <button class="btn btn-secondary" type="button" onclick="showCart()"><img width="30" height="30" src="cart.png">Giỏ hàng
             </button>
         </div>
     </div>
 </nav>
-<div id="cart-frame" style="display: none;position: absolute">
+<div id="cart-frame" style="display: none">
     <button class="btn btn-danger" onclick="deleteCart()">Clear</button>
     <img width="30" height="30" src="minimize.png" style="margin-left: 90px;position: absolute" onclick="hideCart()">
-    <p id="cart" style="float: right "></p>
+    <p id="cart" ></p>
+    <p id="totalPrice"></p>
 </div>
 
 <table id="infoTable" style="display: none;width: 300px;float: right;position: absolute">
     <tr>
         <th colSpan="2">Thông tin game
-            <button style="float: right;width: 50px" onclick="hideAddGame()">-</button>
+           <img width="30" height="30" src="minimize.png" onclick="hideAddGame()" style="float: right">
         </th>
     </tr>
     <tr>
@@ -83,6 +83,10 @@
         <td><input id="inputCategory"></td>
     </tr>
     <tr>
+        <td>More</td>
+        <td><input id="inputMore"></td>
+    </tr>
+    <tr>
         <td></td>
         <td>
             <button onclick="addGame()">ADD</button>
@@ -92,10 +96,12 @@
 </table>
 <h3 style="text-align: center;color: #0059ff;font-style: italic">Danh sách sản phẩm</h3>
 <div id="filterArea">
+    <span>Thể loại</span>
     <select id="filterCategory">
         <option value="Sport" selected>Sport</option>
         <option value="Action">Action</option>
         <option value="RPG">RPG</option>
+        <option value="FPS">FPS</option>
     </select>
     <span>Mức giá</span>
     <input type="number" id="lowestPrice" placeholder="Mức giá thấp nhất">

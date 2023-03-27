@@ -1,7 +1,7 @@
 let cart = [];
 
 function addToCart(index) {
-    let item = gameArr[index];
+    let item = gameArr1[index];
     let existingItem = cart.find((cartItem) => cartItem.name === item.name);
 
     if (existingItem) {
@@ -9,7 +9,7 @@ function addToCart(index) {
     } else {
         cart.push({...item, quantity: 1});
     }
-    console.log(cart);
+    alert("Sản phẩm " + gameArr1[index].name + " đã được thêm vào giỏ")
 }
 
 function showCart() {
@@ -21,14 +21,24 @@ function showCart() {
     }
     table += "</table>"
     document.getElementById('cart').innerHTML = table;
-    document.getElementById('cart-frame').style.display= "block";
+    document.getElementById('cart-frame').style.display = "block";
 }
 
 function hideCart() {
     document.getElementById('cart-frame').style.display = "none";
 }
+
 function deleteCart() {
     cart.length = 0;
     showCart();
+    totalPrice();
+}
+
+function totalPrice() {
+    let sum = 0;
+    for (let i = 0; i < cart.length; i++) {
+        sum += +cart[i].price;
+    }
+    document.getElementById('totalPrice').innerHTML = "Tổng cộng : " + sum;
 }
 

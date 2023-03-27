@@ -39,7 +39,7 @@ li a {
 }
 /* css info table to add game */
 #infoTable {
-    top: 30%;
+    top: 35%;
     left: 90%;
     transform: translate(-50%, -50%);
     padding: 20px;
@@ -52,20 +52,22 @@ li a {
 }
 /* css cart */
 #cart-frame {
-    position: fixed;
+    position: absolute;
     top: 37%;
     left: 94%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: 400px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(234, 230, 230, 0.71);
     border: 1px solid black;
     overflow: auto;
 }
+/* css footer */
 footer {
     background-color: chartreuse;
     color: blue;
 }
+/* css filter area */
 #filterArea {
 margin-left: 500px;
 }
