@@ -39,6 +39,6 @@ function totalPrice() {
     for (let i = 0; i < cart.length; i++) {
         sum += +cart[i].price;
     }
-    document.getElementById('totalPrice').innerHTML = "Tổng cộng : " + sum;
+    document.getElementById('totalPrice').innerHTML = `<p style="color: red" >Tổng cộng : ${sum}`;
 }
 
