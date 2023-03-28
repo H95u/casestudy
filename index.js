@@ -42,10 +42,12 @@ class Game {
 // let game4 = new Game("https://muaga.me/wp-content/uploads/2019/09/Dragon-Ball-FighterZ-Ultimate-Edition-Steam-Key-1.jpg", "DRAGON BALL FighterZ - Ultimate Edition", "717.000", "Action")
 //
 
-let indexGame;
-let gameArr = JSON.parse(localStorage.getItem('Game'));
-let gameArr1 = gameArr;
+let indexGame;// để lấy vị trí index edit thông tin game
+let gameArr = JSON.parse(localStorage.getItem('Game'));// lấy mảng game từ trên local
+let gameArr1 = gameArr.slice(); // gán lại mảng gameArr1 bằng mảng trên local để gán lại khi search và lọc k bị sai index
 
+
+//hiển thị danh sách sản phẩm
 function showList() {
     let table = "<table>";
     let showButtons = localStorage.getItem('loginSuccess') === 'true';
@@ -54,7 +56,7 @@ function showList() {
             table += "<tr> </tr>";
         }
         table += `<td>
-        <a href="${gameArr[i].more}"><img width="300" height="200" src="${gameArr[i].img}" alt="a"></a> 
+        <a href="${gameArr[i].more}"><img style="border-radius: 10px" width="300" height="200" src="${gameArr[i].img}" alt="a"></a> 
         <p>${gameArr[i].name}</p>
         <p style="color: #bd2828">Giá : ${gameArr[i].price + " đ"}</p>
         <p style="color: #4ba74b"> Thể loại : ${gameArr[i].category} </p>
@@ -70,12 +72,12 @@ function showList() {
     document.getElementById('list-game').innerHTML = table;
 }
 
+//tìm kiếm
 function search() {
-    let searchInput = document.getElementById('searchInput');
-    let filterValue = searchInput.value.toUpperCase();
+    let searchInput = document.getElementById('searchInput').value.toUpperCase();
     let showButtons = localStorage.getItem('loginSuccess') === 'true';
-    gameArr1 = gameArr.filter(game => {
-        return game.name.toUpperCase().includes(filterValue);
+    gameArr1 = gameArr.filter(function (game) {
+        return game.name.toUpperCase().includes(searchInput);
     });
 
     let table = "<table>";
@@ -84,24 +86,24 @@ function search() {
         if (i % 4 === 0) {
             table += "<tr></tr>";
         }
-        table += "<td>";
-        table += `<a href="${gameArr1[i].more}"><img width="300" height="200" src="${gameArr1[i].img}" alt="a"></a> `;
-        table += `<p>${gameArr1[i].name}</p>`;
-        table += `<p style="color: #bd2828">Giá : ${gameArr1[i].price + "đ"}</p>`;
-        table += `<p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>`;
-        table += `<div style="display: ${showButtons ? 'block' : 'none'}">
-            <button class="btn btn-outline-primary" onclick="updateGame(${i}); showAddGame()">Edit</button>
-            <button class="btn btn-outline-primary" onclick="deleteGame(${i})">Delete</button>
-            <button class="btn btn-outline-primary" onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
-                 </div>`
-        table += "</td>";
+        table += `<td>
+        <a href="${gameArr1[i].more}"><img style="border-radius: 10px" width="300" height="200" src="${gameArr1[i].img}" alt="a"></a> 
+        <p>${gameArr1[i].name}</p>
+        <p style="color: #bd2828">Giá : ${gameArr1[i].price + "đ"}</p>
+        <p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>
+        <div style="display: ${showButtons ? 'block' : 'none'}">
+        <button class="btn btn-outline-primary" onclick="updateGame(${i}); showAddGame()">Edit</button>
+        <button class="btn btn-outline-primary" onclick="deleteGame(${i})">Delete</button>
+        <button class="btn btn-outline-primary" onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
+        </div>
+        </td>`;
     }
     table += "<tr></tr>";
     table += "</table>";
     document.getElementById('list-game').innerHTML = table;
 }
 
-
+// thêm sản phẩm
 function addGame() {
     let inputImg = document.getElementById('inputImg').value;
     let inputName = document.getElementById('inputName').value;
@@ -113,6 +115,7 @@ function addGame() {
     showList();
 }
 
+// xóa sản phẩm
 function deleteGame(index) {
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm " + gameArr[index].name + "?")) {
         gameArr.splice(index, 1);
@@ -121,6 +124,7 @@ function deleteGame(index) {
     showList();
 }
 
+// cập nhật sản phẩm
 function updateGame(index) {
     let game = gameArr[index];
     document.getElementById('inputImg').value = game.img;
@@ -134,6 +138,7 @@ function updateGame(index) {
 
 }
 
+// chỉnh sửa thông tin sản phẩm
 function editGame() {
     let game = gameArr[indexGame];
     game.img = document.getElementById('inputImg').value;
@@ -145,44 +150,46 @@ function editGame() {
     showList();
 }
 
+// hiện bảng thêm sản phẩm
 function showAddGame() {
     document.getElementById('infoTable').style.display = "block";
 }
 
+//ẩn bảng thêm sản phẩm
 function hideAddGame() {
     document.getElementById('infoTable').style.display = "none";
 }
 
+// lọc sản phẩm theo giá và thể loại
 function filter() {
-    let searchInput = document.getElementById('filterCategory');
-    let filterValue = searchInput.value.toUpperCase();
+    let filterCategoryInput = document.getElementById('filterCategory').value.toUpperCase();
     let inputLowestPrice = +document.getElementById('lowestPrice').value;
     let inputHighestPrice = document.getElementById('highestPrice').value;
     let showButtons = localStorage.getItem('loginSuccess') === 'true';
-    console.log(inputHighestPrice, inputLowestPrice);
     if (inputHighestPrice === "") {
         inputHighestPrice = 99999999999;
     }
-    gameArr1 = gameArr.filter(game => {
-        return game.category.toUpperCase().includes(filterValue)
+    gameArr1 = gameArr.filter(function (game) {
+        return game.category.toUpperCase().includes(filterCategoryInput)
             && game.price >= inputLowestPrice && game.price <= inputHighestPrice;
     });
     let table = "<table>";
+
     for (let i = 0; i < gameArr1.length; i++) {
         if (i % 4 === 0) {
             table += "<tr></tr>";
         }
-        table += "<td>";
-        table += `<a href="${gameArr1[i].more}"><img width="300" height="200" src="${gameArr1[i].img}" alt="a"></a> `;
-        table += `<p>${gameArr1[i].name}</p>`;
-        table += `<p style="color: #bd2828">Giá : ${gameArr1[i].price}</p>`;
-        table += `<p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>`;
-        table += `<div style="display: ${showButtons ? 'block' : 'none'}">
-            <button onclick="updateGame(${i}); showAddGame()">Edit</button>
-            <button onclick="deleteGame(${i})">Delete</button>
-            <button onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
-               </div>`
-        table += "</td>";
+        table += `<td>
+        <a href="${gameArr1[i].more}"><img style="border-radius: 10px" width="300" height="200" src="${gameArr1[i].img}" alt="a"></a> 
+        <p>${gameArr1[i].name}</p>
+        <p style="color: #bd2828">Giá : ${gameArr1[i].price + "đ"}</p>
+        <p style="color: #4ba74b"> Thể loại : ${gameArr1[i].category} </p>
+        <div style="display: ${showButtons ? 'block' : 'none'}">
+        <button class="btn btn-outline-primary" onclick="updateGame(${i}); showAddGame()">Edit</button>
+        <button class="btn btn-outline-primary" onclick="deleteGame(${i})">Delete</button>
+        <button class="btn btn-outline-primary" onclick="addToCart(${i}); showCart()">Thêm vào giỏ hàng</button>
+        </div>
+        </td>`;
     }
     table += "<tr></tr>";
     table += "</table>";

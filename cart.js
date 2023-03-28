@@ -2,8 +2,9 @@ let cart = [];
 
 function addToCart(index) {
     let item = gameArr1[index];
-    let existingItem = cart.find((cartItem) => cartItem.name === item.name);
-
+    let existingItem = cart.find(function (cart) {
+        return cart.name === item.name
+    });
     if (existingItem) {
         existingItem.quantity++;
     } else {
@@ -37,8 +38,8 @@ function deleteCart() {
 function totalPrice() {
     let sum = 0;
     for (let i = 0; i < cart.length; i++) {
-        sum += +cart[i].price;
+        sum += (+cart[i].price) * cart[i].quantity;
     }
-    document.getElementById('totalPrice').innerHTML = `<p style="color: red" >Tổng cộng : ${sum}`;
+    document.getElementById('totalPrice').innerHTML = `<p style="color: red" >Tổng cộng : ${sum} đ`;
 }
 

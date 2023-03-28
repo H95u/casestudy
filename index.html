@@ -10,8 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+
 </head>
-<body onload="showList();logedinHello()">
+<body onload="showList();logedinHello();showAdminChatBtn()">
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html"><img width="50" height="50" src="logo.png"></a><span
@@ -41,14 +42,18 @@
                 <li class="nav-item" value="Tên đăng nhập">
                     <a class="nav-link" href="#">Xin chào, <span style="color: red" id="usernameHello"></span></a>
                 </li>
+                <li><img id="adminChatBtn" width="50" height="50" src="admin-inbox.png"
+                         onclick="showAdminInbox();showAdminMessage()" style="display: none"></li>
             </ul>
+            <textarea id="adminInbox" cols="20" rows="10" style="resize: none" disabled></textarea>
             <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search" id="searchInput" oninput="search()">
+                <input class="form-control me-2" type="text" placeholder="Tìm kiếm" id="searchInput" oninput="search()">
             </form>
             <button class="btn btn-primary" id="addGameBtn" style="float: right;display: none" onclick="showAddGame()">
                 Thêm sản phẩm game mới
             </button>
-            <button class="btn btn-secondary" type="button" onclick="showCart()"><img width="30" height="30" src="cart.png">Giỏ hàng
+            <button class="btn btn-secondary" type="button" onclick="showCart()"><img width="30" height="30"
+                                                                                      src="cart.png">Giỏ hàng
             </button>
         </div>
     </div>
@@ -56,14 +61,14 @@
 <div id="cart-frame" style="display: none">
     <button class="btn btn-danger" onclick="deleteCart()">Clear</button>
     <img width="30" height="30" src="minimize.png" style="float: right" onclick="hideCart()">
-    <p id="cart" ></p>
+    <p id="cart"></p>
     <p id="totalPrice"></p>
 </div>
 
 <table id="infoTable" style="display: none;width: 300px;float: right;position: absolute">
     <tr>
         <th colSpan="2">Thông tin game
-           <img width="30" height="30" src="minimize.png" onclick="hideAddGame()" style="float: right">
+            <img width="30" height="30" src="minimize.png" onclick="hideAddGame()" style="float: right">
         </th>
     </tr>
     <tr>
@@ -89,8 +94,8 @@
     <tr>
         <td></td>
         <td>
-            <button onclick="addGame()">ADD</button>
-            <button onclick="editGame()">Save</button>
+            <button class="btn btn-info" onclick="addGame()">ADD</button>
+            <button class="btn btn-info" onclick="editGame()">Save</button>
         </td>
     </tr>
 </table>
@@ -111,19 +116,19 @@
 </div>
 <div id="list-game"></div>
 
-<footer class="footer">
+<footer class="footer" style="font-style: italic">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <h3>Thông tin liên hệ</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Quận XYZ, HN</p>
-                <p><i class="fas fa-phone"></i> Điện thoại: 0123456789</p>
-                <p><i class="fas fa-envelope"></i> Email: info@webbangame.com</p>
+                <p> Địa chỉ: 123 Đường ABC, Quận XYZ, HN</p>
+                <p> Điện thoại: 0123456789</p>
+                <p>Email: info@webbangame.com</p>
             </div>
             <div class="col-md-4">
                 <h3 style="margin-left: 50px">Đường dẫn nhanh</h3>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="#">Tin tức</a></li>
                     <li><a href="#">Liên hệ</a></li>
                     <li><a href="#">Thông tin thêm</a></li>
@@ -132,11 +137,14 @@
             </div>
             <div class="col-md-4">
                 <h3>Theo dõi chúng tôi</h3>
-                <ul class="social">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+                <div id="chatArea" style="border: 1px solid black;display: none">
+                    <textarea id="chatInput" cols="39" row="5" style="height: 350px;resize: none;border-radius: 10px"></textarea>
+                    <button class="btn btn-info" style="margin-left: 30px;width: 100px" onclick="sendMessage()">Gửi</button>
+                    <button class="btn btn-dark" style="float: right;margin-right: 20px" onclick="hideChat()">Ẩn chat</button>
+                </div>
+                <div style="float: right">
+                    <img id="userChatBtn" width="100" height="100" src="chat.png" onclick="showChat()">
+                </div>
             </div>
         </div>
         <div class="row">
@@ -145,10 +153,11 @@
             </div>
         </div>
     </div>
-</footer>
 
+</footer>
 </body>
 <script src="register.js"></script>
 <script src="cart.js"></script>
 <script src="index.js"></script>
+<script src="admin-inbox.js"></script>
 </html>

@@ -37,8 +37,6 @@ function regNewAcc() {
             accountArr.push(account);
             showLoginForm();
             localStorage.setItem("Account", JSON.stringify(accountArr));
-            let data = JSON.parse(localStorage.getItem('Account'));
-            console.log(data)
         } else {
             alert("Tên đăng nhập của bạn bị trùng!!")
         }
@@ -69,7 +67,6 @@ function login() {
         window.location.href = "index.html";
     } else {
         alert("Tài khoản của bạn không tồn tại !!");
-        localStorage.setItem("loginSuccess", JSON.stringify(false));
     }
 }
 
@@ -87,7 +84,8 @@ function logedinHello() {
 }
 
 function logOut() {
-    localStorage.setItem('loginSuccess', false);
+    localStorage.setItem('loginSuccess', JSON.stringify(false));
+    localStorage.setItem('usernameLogedin', JSON.stringify("Khách"));
 }
 
 function showRegForm() {
@@ -100,6 +98,8 @@ function showLoginForm() {
     document.getElementById('formRegister').style.display = "none";
 }
 
+
+//đổi hình nền khi chuyển giữa register và login
 function changeBackground() {
     if (document.getElementById('formLogin').style.display === "none") {
         document.body.classList.remove("background");

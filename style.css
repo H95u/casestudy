@@ -1,17 +1,12 @@
 td {
     padding: 10px;
 }
-#navbar {
-    background-color: #5eda9d;
-}
+
 
 /* css nav bar */
 ul {
     list-style-type: none;
-    /*margin: 0;*/
-    /*padding: 0;*/
     overflow: hidden;
-    /*background-color: blue;*/
 }
 
 li {
@@ -20,7 +15,6 @@ li {
 
 li a {
     display: block;
-    text-align: center;
     padding: 16px;
     text-decoration: none;
 }
@@ -39,13 +33,12 @@ li a {
 }
 /* css info table to add game */
 #infoTable {
-    top: 35%;
-    left: 90%;
-    transform: translate(-50%, -50%);
+    top: 10%;
+    left: 80%;
     padding: 20px;
     color: red;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: white;
     z-index: 999;
     border: 2px solid black;
     text-align: center;
@@ -55,7 +48,6 @@ li a {
     position: absolute;
     top: 10%;
     left: 80%;
-    /*transform: translate(-50%, -50%);*/
     width: 300px;
     height: 600px;
     background-color: white;
@@ -69,5 +61,24 @@ footer {
 }
 /* css filter area */
 #filterArea {
-margin-left: 500px;
+margin-left: 450px;
 }
+/* css chat area */
+#chatArea {
+    position: absolute;
+    width: 307px;
+    height: 400px;
+    bottom: -350px;
+    left: 1005px;
+    background-color: white;
+    border-radius: 20px;
+}
+#adminInbox {
+    position: absolute;
+    margin-left: 660px;
+    top: 10%;
+    background-color: white;
+    border-radius: 10px;
+    display: none;
+}
+
